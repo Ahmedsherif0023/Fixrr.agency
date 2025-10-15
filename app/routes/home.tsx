@@ -43,6 +43,11 @@ export default function Home() {
               About
             </a>
           </li>
+           <li>
+            <a href="#" className="font-bold">
+              Portfolio
+            </a>
+          </li>
           <li>
             <a href="#" className="font-bold">
               Contact
