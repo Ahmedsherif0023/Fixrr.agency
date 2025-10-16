@@ -50,7 +50,7 @@ export default function Home() {
           </li>
           <li>
             <a href="#" className="font-bold">
-              Contact
+              Contact info
             </a>
           </li>
         </ul>
