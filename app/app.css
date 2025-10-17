@@ -122,9 +122,30 @@
 }
 
 
-
-.about-founder:hover , .get-started:hover , .learn-more:hover {
+ .get-started:hover {
   cursor:pointer;
-  transition:0.5s ease-in-out;
-  scale:1.1;
+  transition:0.3s ease-in-out;
+  background-color:color-mix(in oklab, var(--color-white) /* #fff = #ffffff */ 10%, transparent);
+  color:white;
+}
+
+.learn-more:hover {
+  cursor:pointer;
+  transition:0.3s ease-in-out;
+  background-color:white;
+  color:black;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: inline-flex;
+  animation: marquee 20s linear infinite;
 }
