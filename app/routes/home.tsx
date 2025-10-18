@@ -12,6 +12,12 @@ import { RiTailwindCssFill } from "react-icons/ri";
 import { TbBrandThreejs } from "react-icons/tb";
 import me from "../../public/imagee.webp";
 import { FaRegArrowAltCircleDown } from "react-icons/fa";
+import p1 from "../../public/project1.webp";
+import p2 from "../../public/project2.webp";
+import p3 from "../../public/project3.webp";
+import p4 from "../../public/project4.webp";
+import pl from "../../public/planning.webp";
+import { BsFillLightningChargeFill } from "react-icons/bs";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -198,6 +204,99 @@ export default function Home() {
       <hr style={{ borderColor: "grey", borderWidth: "1px" }} />
       <div className="bg-white/80 backdrop-blur-md text-black rounded-xl p-1 text-center mt-[-18px] w-50 justify-center items-center align-center flex m-auto font-bold gap-1 cursor-pointer">
         Recent Works <FaRegArrowAltCircleDown />
+      </div>
+
+      <ul className="grid grid-cols-4">
+        <li className="bg-white/25 backdrop-blur-md p-5 m-10 align-center justify-center  rounded-2xl proj-img relative overflow-hidden group cursor-pointer">
+          <img
+            src={p1}
+            alt="project 1"
+            className="w-65 h-100 rounded-2xl object-cover transition-transform duration-500 group-hover:scale-110 m-auto"
+          />
+          <div className="absolute inset-0 bg-white/10 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+            <p className="text-white text-lg font-semibold drop-shadow">
+              View More
+            </p>
+          </div>
+        </li>
+        <li className="bg-white/25 backdrop-blur-md p-5 m-10 align-center justify-center  rounded-2xl proj-img relative overflow-hidden group cursor-pointer">
+          <img
+            src={p2}
+            alt="project 2"
+            className="w-65 h-100 rounded-2xl object-cover transition-transform duration-500 group-hover:scale-110 m-auto"
+          />
+          <div className="absolute inset-0 bg-white/10 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+            <p className="text-white text-lg font-semibold drop-shadow">
+              View More
+            </p>
+          </div>
+        </li>
+        <li className="bg-white/25 backdrop-blur-md p-5 m-10 align-center justify-center  rounded-2xl proj-img relative overflow-hidden group cursor-pointer">
+          <img
+            src={p3}
+            alt="project 3"
+            className="w-65 h-100 rounded-2xl object-cover transition-transform duration-500 group-hover:scale-110 m-auto"
+          />
+          <div className="absolute inset-0 bg-white/10 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+            <p className="text-white text-lg font-semibold drop-shadow">
+              View More
+            </p>
+          </div>
+        </li>
+        <li className="bg-white/25 backdrop-blur-md p-5 m-10 align-center justify-center  rounded-2xl proj-img relative overflow-hidden group cursor-pointer">
+          <img
+            src={p4}
+            alt="project 4"
+            className="w-65 h-100 rounded-2xl object-cover transition-transform duration-300 group-hover:scale-110 m-auto"
+          />
+          <div className="absolute inset-0 bg-white/10 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+            <p className="text-white text-lg font-semibold drop-shadow">
+              View More
+            </p>
+          </div>
+        </li>
+      </ul>
+      <hr style={{ borderColor: "grey", borderWidth: "1px" }} />
+
+      <div className="Process-sec flex items-center justify-center h-full flex-row w-[90%] m-auto scroll-smooth my-10 gap-20">
+        <div className="process-img w-50% ">
+          <img
+            src={pl}
+            alt="planning image"
+            className="w-200 mt-55 h-250 rounded-2xl"
+          />
+        </div>
+        <div className="process-details flex flex-col gap-5 w-50%">
+          <div className="Branding-process bg-white/10 backdrop-blur-md text-white text-sm flex justify-center items-center py-2 px-3 rounded-full shadow-lg font-semibold gap-2 w-45 mb-5">
+            <BsFillLightningChargeFill /> Branding Process
+          </div>
+          <div className="process-steps bg-white/10 z-100 backdrop-blur-md text-white w-70% p-15 rounded-xl ">
+            <h1 className="font-bold text-4xl mb-5">Our Process</h1>
+            <h2 className="font-semibold text-xl text-white/75">
+              crafting bold visuals that inspire and elevate brands with thought
+              process.
+            </h2>
+            <div className="flex flex-row gap-25 mt-10 justify-center align-center text-center mb-10">
+              <a
+                href="#"
+                className="get-started bg-white text-black flex justify-center items-center py-3 px-4 rounded-[12px] shadow-lg font-bold"
+              >
+                Book a Free Call
+              </a>
+              <a
+                href="#"
+                className="learn-more bg-white/10 backdrop-blur-md text-white flex justify-center items-center py-3 px-4 rounded-[12px] shadow-lg font-bold"
+              >
+                See Projects
+              </a>
+            </div>
+            <hr style={{ borderColor: "grey", borderWidth: "1px" }} />
+          </div>
+        </div>
       </div>
     </div>
   );
