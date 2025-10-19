@@ -291,7 +291,7 @@ export default function Home() {
                 href="#"
                 className="learn-more bg-white/10 backdrop-blur-md text-white flex justify-center items-center py-3 px-4 rounded-[12px] shadow-lg font-bold"
               >
-                See Projects
+                See our Projects
               </a>
             </div>
             <hr style={{ borderColor: "grey", borderWidth: "1px" }} />
