@@ -13,6 +13,12 @@ body {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -32,4 +38,27 @@ nav button:hover {
   background-color: white;
   color: black;
   
+}
+
+.bg-color-left {
+  background-color: #2d29ec99;
+    opacity: .7;
+    filter: blur(6.5vw);
+    border-radius: 50%;
+    width: 30vw;
+    max-width: 863px;
+    height: 70vw;
+    max-height: 923px;
+    position: absolute;
+    inset: 0% auto auto 0%;
+    transform: rotate(22deg);
+}
+
+
+.hero_rotating-badge_arrow{
+  position:absolute;
+}
+
+.spin-slow {
+  animation: spin-slow 15s linear infinite; /* 5s per rotation */
 }

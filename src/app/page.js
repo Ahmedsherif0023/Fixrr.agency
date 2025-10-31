@@ -8,8 +8,8 @@ export default function Home() {
        <img
          src="/icon.webp"
          alt="FIXRR agency logo"
-         width={50}
-         height={50}
+         width={40}
+         height={40}
          priority
        />
        <h1 className="text-4xl font-semibold">FIXRR</h1>
@@ -44,8 +44,14 @@ export default function Home() {
     </div>
   </div>
   <div className="static justify-end items-end text-white  w-full h-full">
-
-    <div className=" z-10 text-white w-[80%] text-left justify-end align-bottom ">
+    <div className=" z-100 text-white w-[70%] text-left justify-between align-bottom ">
+<div className="absolute -bottom-5 left-10">
+  <div className="relative w-48 h-48 flex items-center justify-center z-100">
+   <img src="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b952_Scroll%20Button.png" loading="lazy" className="spin-slow absolute inset-0 w-full h-full object-fit"></img>
+   <img src="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b954_arrow.svg" className="hero_rotating-badge_arrow absolute w-24 h-24 object-contain"></img>
+   
+  </div>
+</div>
      <div className="absolute text-base bottom-5 right-10 gap-7">
        <h1 className="font-semibold heading  text-left max-w-sm ">
          Passionate Egyptian  Team: Crafting Digital Solutions to Meet Your Needs. Empower Your Brand with Innovation.
@@ -54,6 +60,8 @@ export default function Home() {
          Book a Free call <MdOutlineArrowRightAlt />
        </button>
      </div>
+    </div>
+    <div className="bg-color-left">
     </div>
   </div>
 
