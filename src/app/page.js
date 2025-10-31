@@ -21,9 +21,9 @@ export default function Home() {
         <li className=" cursor-pointer">Services</li>
         <li className=" cursor-pointer">Testimonial</li>
       </ul>
-      <button className="border-2 border-white rounded-full px-6 py-2 flex flex-row items-center justify-center gap-3 cursor-pointer hover:bg-white hover:text-black transition duration-300">
-        Book a Free call <MdOutlineArrowRightAlt />
-      </button>
+        <button className="border-2 border-white rounded-full  px-6 py-2 flex flex-row items-center justify-center gap-3 cursor-pointer hover:bg-white hover:text-black transition duration-300 mt-5">
+         Book a Free call <MdOutlineArrowRightAlt />
+       </button>
     </nav> 
   
   <div className="main text-center justify-center items-center text-white relative w-[80%]">
