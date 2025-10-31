@@ -38,7 +38,7 @@ export default function Home() {
     />
 
     <div className="relative z-10 text-white w-[80%] text-left justify-start  left-20">
-      <h1 className="text-7xl font-semibold heading max-w-2xl text-left relative -top-20 left-20">
+      <h1 className="text-7xl font-semibold heading max-w-3xl text-left relative -top-20 left-20">
         Emotion-Driven Design: Building Brand Loyalty
       </h1>
     </div>
