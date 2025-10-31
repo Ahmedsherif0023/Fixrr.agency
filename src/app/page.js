@@ -1,6 +1,23 @@
+"use client";
 import { MdOutlineArrowRightAlt } from "react-icons/md";
-
+import { useEffect } from "react";
+import { gsap } from "gsap";
 export default function Home() {
+   useEffect(() => {
+    // Animate elements with fade + upward movement
+    gsap.fromTo(
+      ".fade-div",
+      { opacity: 0, y: 50 }, // start lower and invisible
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        stagger: 0.3,
+        ease: "power3.out",
+        delay: 0.2,
+      }
+    );
+  }, []);
   return (
     <div className="flex min-h-screen items-center justify-between  w-full">
     <nav className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 flex flex-row items-center justify-between gap-15 w-[80%] my-auto">
@@ -37,7 +54,7 @@ export default function Home() {
       width={700}
     />
 
-    <div className="relative z-10 text-white w-[80%] text-left justify-start  left-20">
+    <div className="fade-div relative z-10 text-white w-[80%] text-left justify-start  left-20">
       <h1 className="text-6xl font-semibold heading max-w-4xl text-left relative -top-20 left-20">
         Emotion-Driven Design: Building Brand Loyalty
       </h1>
@@ -45,14 +62,14 @@ export default function Home() {
   </div>
   <div className="static justify-end items-end text-white  w-full h-full">
     <div className=" z-100 text-white w-[70%] text-left justify-between align-bottom ">
-<div className="absolute -bottom-5 left-10">
+<div className="fade-div absolute -bottom-5 left-10">
   <div className="relative w-48 h-48 flex items-center justify-center z-100">
    <img src="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b952_Scroll%20Button.png" loading="lazy" className="spin-slow absolute inset-0 w-full h-full object-fit"></img>
    <img src="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b954_arrow.svg" className="hero_rotating-badge_arrow absolute w-24 h-24 object-contain"></img>
    
   </div>
 </div>
-     <div className="absolute text-base bottom-5 right-10 gap-7">
+     <div className="fade-div absolute text-base bottom-5 right-10 gap-7">
        <h1 className="font-semibold heading  text-left max-w-sm ">
          Passionate Egyptian  Team: Crafting Digital Solutions to Meet Your Needs. Empower Your Brand with Innovation.
        </h1>
