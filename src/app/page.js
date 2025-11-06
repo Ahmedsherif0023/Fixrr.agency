@@ -2,6 +2,16 @@
 import { MdOutlineArrowRightAlt } from "react-icons/md";
 import { useEffect } from "react";
 import { gsap } from "gsap";
+import { FaFigma } from "react-icons/fa";
+import { RiJavascriptFill } from "react-icons/ri";
+import { FaReact } from "react-icons/fa";
+import { FaNodeJs } from "react-icons/fa";
+import { IoLogoVercel } from "react-icons/io5";
+
+
+
+
+
 export default function Home() {
    useEffect(() => {
     // Animate elements with fade + upward movement
@@ -19,8 +29,11 @@ export default function Home() {
     );
   }, []);
   return (
-    <div className="flex min-h-screen items-center justify-between  w-full">
-    <nav className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 flex flex-row items-center justify-between gap-15 w-[80%] my-auto">
+
+
+
+    <div className="flex min-h-screen items-center justify-between flex-col  w-full static">
+    <nav className="absolute  top-0 inset-x-0 z-50 flex flex-row items-center justify-between gap-15 m-auto p-6  text-white w-[80%]">
      <div className="logo flex flex-row gap-5 items-center justify-center">
        <img
          src="/icon.webp"
@@ -43,8 +56,10 @@ export default function Home() {
        </button>
     </nav> 
   
-  <div className="main text-center justify-center items-center text-white relative w-[80%]">
-<img
+
+
+  <div className="main text-center justify-center items-center text-white w-[80%] relative top-20">
+    <img
       src="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b964_spring.png"
       alt="spring"
       fill
@@ -54,15 +69,21 @@ export default function Home() {
       width={700}
     />
 
-    <div className="fade-div relative z-10 text-white w-[80%] text-left justify-start  left-20">
-      <h1 className="text-6xl font-semibold heading max-w-4xl text-left relative -top-20 left-20">
+    <div className="fade-div relative z-10 text-white w-[80%] text-left justify-start  ">
+      <h1 className="text-6xl font-semibold heading max-w-4xl text-left relative top-36 ">
         Emotion-Driven Design: Building Brand Loyalty
       </h1>
     </div>
   </div>
-  <div className="static justify-end items-end text-white  w-full h-full">
+
+
+
+
+
+  <div className="static justify-end items-end text-white  w-[80%] h-full">
     <div className=" z-100 text-white w-[70%] text-left justify-between align-bottom ">
 <div className="fade-div absolute -bottom-5 left-10">
+
   <div className="relative w-48 h-48 flex items-center justify-center z-100">
    <img src="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b952_Scroll%20Button.png" loading="lazy" className="spin-slow absolute inset-0 w-full h-full object-fit"></img>
    <img src="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b954_arrow.svg" className="hero_rotating-badge_arrow absolute w-24 h-24 object-contain"></img>
@@ -78,9 +99,23 @@ export default function Home() {
        </button>
      </div>
     </div>
+
+
     <div className="bg-color-left">
     </div>
   </div>
+
+  <div className="fade-div flex flex-row justify-between w-[80%] inset-x-0 gap-8 text-4xl font-extrabold absolute bottom-10">
+    <FaFigma/>
+    <RiJavascriptFill/>
+    <FaReact/>
+    <FaNodeJs/>
+    <IoLogoVercel/>
+
+
+  </div>
+
+  
 
     </div>
   );
