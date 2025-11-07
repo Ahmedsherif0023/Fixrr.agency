@@ -20,6 +20,7 @@ body {
 }
 
 
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -30,7 +31,7 @@ body {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Clash Display", Verdana, sans-serif;
 }
 
 
@@ -53,6 +54,19 @@ nav button:hover {
     inset: 0% auto auto 0%;
     transform: rotate(22deg);
 }
+.bg-color-right {
+     background-color:#2d29ec99;
+     opacity: .7;
+    filter: blur(6.5vw);
+    border-radius: 50%;
+    width: 30vw;
+    max-width: 863px;
+    height: 70vw;
+    max-height: 923px;
+    position: absolute;
+    inset: 0% 0% auto auto;
+    transform: rotate(22deg);
+}
 
 
 .hero_rotating-badge_arrow{
@@ -61,4 +75,14 @@ nav button:hover {
 
 .spin-slow {
   animation: spin-slow 15s linear infinite; /* 5s per rotation */
+}
+
+.image-default-cover{
+  border-radius: 0.5rem;
+}
+
+
+.service-holder:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
 }
