@@ -1,6 +1,6 @@
 "use client";
 import { MdOutlineArrowRightAlt } from "react-icons/md";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { FaFigma } from "react-icons/fa";
 import { RiJavascriptFill } from "react-icons/ri";
@@ -8,8 +8,49 @@ import { FaReact } from "react-icons/fa";
 import { FaNodeJs } from "react-icons/fa";
 import { IoLogoVercel } from "react-icons/io5";
 import { Services } from "./components/Services.jsx";
+import { MdOutlineArrowOutward } from "react-icons/md";
+import { IoArrowForwardSharp } from "react-icons/io5";
+import { IoArrowBackOutline } from "react-icons/io5";
+
 
 export default function Home() {
+  const [active, setActive] = useState(null);
+  // Testimonial carousel state
+  const testimonials = [
+    {
+      img: "https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b963_testimony-image-1.avif",
+      text:
+        '"Working with FIXRR was an absolute game-changer for our business. Their team brought creativity, professionalism, and innovation to every step of the project. Our brand has never looked better!"',
+      name: "Rebecca P.",
+      title: "CEO of DynaMotion",
+    },
+    {
+      img: "/client2.png",
+      text:
+        '"FIXRR exceeded our expectations. The process was smooth, and the results were outstanding. Highly recommended!"',
+      name: "Michael S.",
+      title: "Founder of TechNova",
+    },
+    {
+      img: "/client3.png",
+      text:
+        '"Professional, creative, and always on time. FIXRR is our go-to agency for all things digital."',
+      name: "Sara L.",
+      title: "Marketing Lead at BrightEdge",
+    },
+  ];
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
+
+  const handlePrevTestimonial = () => {
+    setTestimonialIndex((prev) =>
+      prev === 0 ? testimonials.length - 1 : prev - 1
+    );
+  };
+  const handleNextTestimonial = () => {
+    setTestimonialIndex((prev) =>
+      prev === testimonials.length - 1 ? 0 : prev + 1
+    );
+  };
   useEffect(() => {
     // Animate elements with fade + upward movement
     gsap.fromTo(
@@ -25,6 +66,7 @@ export default function Home() {
       }
     );
   }, []);
+
   return (
     <div className="flex min-h-screen items-center justify-between flex-col  w-full static">
       <nav className="absolute  top-0 inset-x-0 z-50 flex flex-row items-center justify-between gap-15 m-auto p-6  text-white w-[80%]">
@@ -105,7 +147,6 @@ export default function Home() {
         <FaNodeJs size={55} />
         <IoLogoVercel size={55} />
       </div>
-      
 
       <div className="fade-div flex flex-col items-center justify-between inset-x-0 relative top-48 gap-20 w-[80%]">
         <div className="flex flex-row items-center justify-between ">
@@ -145,35 +186,186 @@ export default function Home() {
             </div>
           </div>
         </div>
-        
+
         <div className="bg-color-right -z-50"></div>
       </div>
-
-
 
       <div className="flex flex-col items-center justify-center gap-10 mb-20 relative top-56 mt-20 inset-x-0 w-[80%]">
         <div className="flex flex-row inset-x-0 justify-between items-center w-full">
           <div className="flex flex-col justify-start items-start w-full">
-            <h1 className="text-6xl font-semibold heading w-[60%] max-w-[75%] text-left ">Impact We Created</h1>
+            <h1 className="text-6xl font-semibold heading w-[60%] max-w-[75%] text-left ">
+              Impact We Created
+            </h1>
           </div>
           <div className="flex flex-col justify-between items-start">
             <p className=" text-base font-normal max-w-[85%] text-left mt-5">
-              At FIXRR, we specialize in offering a full range of creative branding, strategy, design and development services tailored to bring your ideas to life.
+              At FIXRR, we specialize in offering a full range of creative
+              branding, strategy, design and development services tailored to
+              bring your ideas to life.
             </p>
-             <button className="border-2 border-white rounded-full  px-6 py-2 flex flex-row items-center justify-center gap-3 cursor-pointer hover:bg-white hover:text-black transition duration-300 mt-5">
-                Book a Free call <MdOutlineArrowRightAlt />
-              </button>
+            <button className="border-2 border-white rounded-full  px-6 py-2 flex flex-row items-center justify-center gap-3 cursor-pointer hover:bg-white hover:text-black transition duration-300 mt-5">
+              Book a Free call <MdOutlineArrowRightAlt />
+            </button>
           </div>
-
         </div>
         <div className="grid grid-cols-2 gap-16">
-          <Services link={"https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b96f_home-work-image-1.avif"} service={"UI/UX Design"} serviceName={"Wayflyer Dashboard"}/>
-          <Services link={"https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b970_work-image-%20(3).avif"} service={"Branding & Logo"} serviceName={"Visual Identity"}/>
-          <Services link={"https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b971_work-image-%20(2).avif"} service={"Digital Marketing"} serviceName={"Social Media Marketing"}/>
-          <Services link={"https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b974_work-image-%20(1).avif"} service={"custom software development"} serviceName={"Elevate Your App"}/>
+          <Services
+            link={
+              "https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b96f_home-work-image-1.avif"
+            }
+            service={"UI/UX Design"}
+            serviceName={"Wayflyer Dashboard"}
+          />
+          <Services
+            link={
+              "https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b970_work-image-%20(3).avif"
+            }
+            service={"Branding & Logo"}
+            serviceName={"Visual Identity"}
+          />
+          <Services
+            link={
+              "https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b971_work-image-%20(2).avif"
+            }
+            service={"Digital Marketing"}
+            serviceName={"Social Media Marketing"}
+          />
+          <Services
+            link={
+              "https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b974_work-image-%20(1).avif"
+            }
+            service={"custom software development"}
+            serviceName={"Elevate Your App"}
+          />
         </div>
       </div>
-      
+
+      <div className="offer-div fade-div  flex flex-col items-center justify-center gap-10 mb-20 relative top-56 mt-20 inset-x-0 w-[80%] text-white">
+        <h1 className="offer-head">We Offer Expertise in</h1>
+        <ul className="offer-list">
+          <div
+            className={"offer-item " + (active === 0 ? "active" : "")}
+            onClick={() => setActive(active === 0 ? null : 0)}
+          >
+            <li>
+              <div className="offers">
+                <h2>01</h2>
+                <h1>Brand Design</h1>
+              </div>
+              <img src="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b96b_home-services-image-01.webp" />
+              <MdOutlineArrowOutward size={70} />
+            </li>
+            <p>
+              We craft unique brand identities — from logos, colors, and
+              typography to complete visual systems. Our agency helps businesses
+              stand out with cohesive, modern, and memorable designs.
+            </p>
+          </div>
+          <hr />
+          <div
+            className={"offer-item " + (active === 1 ? "active" : "")}
+            onClick={() => setActive(active === 1 ? null : 1)}
+          >
+            <li>
+              <div className="offers">
+                <h2>02</h2>
+                <h1>UI/Ux Design</h1>
+              </div>
+              <img src="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b956_home-services-image-1.avif" />
+              <MdOutlineArrowOutward size={70} />
+            </li>
+            <p>
+              We design clean, intuitive, and user-focused interfaces that
+              elevate digital experiences. From wireframes to polished visuals,
+              we turn ideas into seamless, engaging products.
+            </p>
+          </div>
+          <hr />
+          <div
+            className={"offer-item " + (active === 2 ? "active" : "")}
+            onClick={() => setActive(active === 2 ? null : 2)}
+          >
+            <li>
+              <div className="offers">
+                <h2>03</h2>
+                <h1>Web development</h1>
+              </div>
+              <img src="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b966_home-services-image-02.webp" />
+              <MdOutlineArrowOutward size={70} />
+            </li>
+            <p>
+              We build fast, responsive, and scalable websites tailored to your
+              brand and goals. From landing pages to full web apps, we turn
+              designs into functional, user-friendly digital products.
+            </p>
+          </div>
+          <hr />
+          <div
+            className={"offer-item " + (active === 3 ? "active" : "")}
+            onClick={() => setActive(active === 3 ? null : 3)}
+          >
+            <li>
+              <div className="offers">
+                <h2>04</h2>
+                <h1>Strategy</h1>
+              </div>
+              <img src="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b96c_home-services-image-03.webp" />
+              <MdOutlineArrowOutward size={70} />
+            </li>
+            <p>
+              We create smart brand and marketing strategies that drive growth
+              and impact. From audience research to positioning, we turn
+              insights into actionable plans for success.
+            </p>
+          </div>
+          <hr />
+        </ul>
+      </div>
+
+      <div className="fade-div  flex flex-col inset-x-0 justify-between items-center text-center mb-20 relative top-52  gap-10 w-[80%]">
+        <h1 className="text-6xl w-[60%] font-bold">
+          Worldwide Trust Built on Excellence
+        </h1>
+        <div className="fade-div flex flex-row justify-between items-center testmonial-card mb-20">
+          <img
+            src={testimonials[testimonialIndex].img}
+            width={500}
+            className="rounded-3xl"
+            alt={testimonials[testimonialIndex].name}
+          />
+          <div className="flex flex-col justify-center items-center gap-24">
+            <p className="text-2xl text-left font-bold w-[70%]">
+              {testimonials[testimonialIndex].text}
+            </p>
+            <div className="flex flex-row justify-between items-center w-[70%] inset-x-0">
+              <div className="flex flex-col justify-start items-start">
+                <h1 className="font-bold text-[25px]">
+                  {testimonials[testimonialIndex].name}
+                </h1>
+                <p className="font-normal text-lg">
+                  {testimonials[testimonialIndex].title}
+                </p>
+              </div>
+              <div className="flex flex-row gap-6">
+                <div className="arrows rounded-full left-arrow">
+                  <IoArrowBackOutline
+                    size={40}
+                    className="cursor-pointer border rounded-full"
+                    onClick={handlePrevTestimonial}
+                  />
+                </div>
+                <div className="arrows rounded-full right-arrow">
+                  <IoArrowForwardSharp
+                    size={40}
+                    className="cursor-pointer  border rounded-full"
+                    onClick={handleNextTestimonial}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

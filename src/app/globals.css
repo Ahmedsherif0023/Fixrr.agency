@@ -1,6 +1,6 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 :root {
   --background: #171717;
@@ -19,8 +19,6 @@ body {
   }
 }
 
-
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -34,55 +32,194 @@ body {
   font-family: "Clash Display", Verdana, sans-serif;
 }
 
-
 nav button:hover {
   background-color: white;
   color: black;
-  
 }
 
 .bg-color-left {
   background-color: #2d29ec99;
-    opacity: .7;
-    filter: blur(6.5vw);
-    border-radius: 50%;
-    width: 30vw;
-    max-width: 863px;
-    height: 70vw;
-    max-height: 923px;
-    position: absolute;
-    inset: 0% auto auto 0%;
-    transform: rotate(22deg);
+  opacity: 0.7;
+  filter: blur(6.5vw);
+  border-radius: 50%;
+  width: 30vw;
+  max-width: 863px;
+  height: 70vw;
+  max-height: 923px;
+  position: absolute;
+  inset: 0% auto auto 0%;
+  transform: rotate(22deg);
 }
 .bg-color-right {
-     background-color:#2d29ec99;
-     opacity: .7;
-    filter: blur(6.5vw);
-    border-radius: 50%;
-    width: 30vw;
-    max-width: 863px;
-    height: 70vw;
-    max-height: 923px;
-    position: absolute;
-    inset: 0% 0% auto auto;
-    transform: rotate(22deg);
+  background-color: #2d29ec99;
+  opacity: 0.7;
+  filter: blur(6.5vw);
+  border-radius: 50%;
+  width: 30vw;
+  max-width: 863px;
+  height: 70vw;
+  max-height: 923px;
+  position: absolute;
+  inset: 0% 0% auto auto;
+  transform: rotate(22deg);
 }
 
-
-.hero_rotating-badge_arrow{
-  position:absolute;
+.hero_rotating-badge_arrow {
+  position: absolute;
 }
 
 .spin-slow {
   animation: spin-slow 15s linear infinite; /* 5s per rotation */
 }
 
-.image-default-cover{
+.image-default-cover {
   border-radius: 0.5rem;
 }
 
+.img-wrapper {
+  overflow: hidden; /* hides the zoom overflow */
+  border-radius: 12px; /* optional, looks cleaner */
+}
 
-.service-holder:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+.img-wrapper img {
+  transition: transform 0.5s ease; /* smooth zoom */
+}
+
+.service-holder:hover img {
+  transform: scale(1.1); /* zoom in */
+}
+
+.service-holder:hover .text-div {
+  color: #2d29ec;
+  transition: color 0.5s ease-in-out;
+}
+
+.arrow-div {
+  color: white;
+  transition: color 0.5s ease-in-out;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.service-holder:hover .arrow-div {
+  background-color: #2d29ec;
+  transition: 0.5s ease-in-out;
+  transform: scale(0.7);
+}
+
+.offer-div .offer-head {
+  font-size: 4rem;
+  font-weight: 600;
+  width: 50%;
+  text-align: center;
+}
+
+.offer-div .offer-list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  margin-top: 4rem;
+  width: 100%;
+}
+
+.offer-div .offer-list li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  height: 15vh;
+}
+
+.offer-div .offer-list li img {
+  position: relative;
+  width: 400px;
+  inset: 20% 0% 0% auto;
+  border-radius: 20px;
+  /* Use opacity/visibility to allow smooth transitions (display is not animatable) */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px) scale(0.98);
+  transition: opacity 500ms ease, transform 500ms ease,
+    visibility 0s linear 500ms;
+  pointer-events: none; /* so it doesn't block hover/clicks */
+  z-index: 50;
+}
+.offer-div .offer-list li:hover img {
+  opacity: 1;
+  visibility: visible; /* becomes visible immediately, but when hiding it's delayed by transition above */
+  transform: translateY(0) scale(1);
+  transition-delay: 0s;
+}
+
+.offer-div .offer-list li h1 {
+  font-size: 3rem;
+  font-weight: 800;
+}
+.offer-div .offer-list li hr {
+  width: 40%;
+  border: 1px solid white;
+}
+
+.offer-div .offers {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.offer-item {
+  cursor: pointer;
+  /* let content size determine height; keep a small min-height for layout stability */
+  /* min-height: 1rem; */
+}
+
+.offer-item p {
+  /* hidden by default; revealed when .active; use max-height for smooth open/close */
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 300ms ease, transform 300ms ease, max-height 350ms ease,
+    visibility 0s linear 300ms;
+  width: auto;
+  margin-top: 0.75rem;
+  color: inherit;
+}
+.offer-item.active p {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  max-height: 400px; /* large enough to contain paragraph */
+  transition-delay: 0s;
+}
+.offer-item.active h1 {
+  color: #2d29ec;
+  transition: all 0.5s ease-in-out;
+}
+
+.offer-item.active h1 {
+  color: #2d29ec;
+  transition: all 0.5s ease-in-out;
+}
+
+.arrows:hover{
+  background-color: #2d29ec;
+  transition: all 0.3s ease-in-out;
+  
+}
+.arrows:hover svg {
+  border: none;
+  transition: all 0.3s ease-in-out;
 }
