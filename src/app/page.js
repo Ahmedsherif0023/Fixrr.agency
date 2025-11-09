@@ -11,30 +11,93 @@ import { Services } from "./components/Services.jsx";
 import { MdOutlineArrowOutward } from "react-icons/md";
 import { IoArrowForwardSharp } from "react-icons/io5";
 import { IoArrowBackOutline } from "react-icons/io5";
+import { FaLinkedin } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
 
 
 export default function Home() {
   const [active, setActive] = useState(null);
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const handleSubmit = async () => {
+    if (!email || isLoading) return;
+    
+    setIsLoading(true);
+    setSubmitStatus(null);
+    
+    try {
+      // Create a form data object
+      const formData = new URLSearchParams();
+      formData.append('email', email);
+      formData.append('source', 'Website Form');
+      
+      // Create the URL with parameters
+      const url = `https://script.google.com/macros/s/AKfycbyCi_3HZ0VCqDDMlS3kq8kuT7SlsGTUidL4J2y67yKkX8ljwTlCX3Zaevi1lFIE30lE/exec?${formData.toString()}`;
+      
+      // Create a script element
+      const script = document.createElement('script');
+      script.src = url;
+      
+      // Create a promise to handle the response
+      const submitPromise = new Promise((resolve, reject) => {
+        // Define callback function
+        window.handleGoogleResponse = (response) => {
+          if (response.status === 'success') {
+            resolve(response);
+          } else {
+            reject(new Error(response.message || 'Submission failed'));
+          }
+          // Clean up
+          delete window.handleGoogleResponse;
+          document.body.removeChild(script);
+        };
+        
+        // Add error handling
+        script.onerror = () => {
+          reject(new Error('Failed to submit form'));
+          delete window.handleGoogleResponse;
+          document.body.removeChild(script);
+        };
+      });
+      
+      // Add script to document
+      document.body.appendChild(script);
+      
+      // Wait for response
+      await submitPromise;
+      
+      // If we get here, submission was successful
+      setSubmitStatus('success');
+      setEmail('');
+      
+    } catch (err) {
+      console.error('Submission error:', err);
+      setSubmitStatus('error');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   // Testimonial carousel state
   const testimonials = [
     {
       img: "https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b963_testimony-image-1.avif",
-      text:
-        '"Working with FIXRR was an absolute game-changer for our business. Their team brought creativity, professionalism, and innovation to every step of the project. Our brand has never looked better!"',
+      text: '"Working with FIXRR was an absolute game-changer for our business. Their team brought creativity, professionalism, and innovation to every step of the project. Our brand has never looked better!"',
       name: "Rebecca P.",
       title: "CEO of DynaMotion",
     },
     {
       img: "/client2.png",
-      text:
-        '"FIXRR exceeded our expectations. The process was smooth, and the results were outstanding. Highly recommended!"',
+      text: '"FIXRR exceeded our expectations. The process was smooth, and the results were outstanding. Highly recommended!"',
       name: "Michael S.",
       title: "Founder of TechNova",
     },
     {
       img: "/client3.png",
-      text:
-        '"Professional, creative, and always on time. FIXRR is our go-to agency for all things digital."',
+      text: '"Professional, creative, and always on time. FIXRR is our go-to agency for all things digital."',
       name: "Sara L.",
       title: "Marketing Lead at BrightEdge",
     },
@@ -76,7 +139,7 @@ export default function Home() {
             alt="FIXRR agency logo"
             width={40}
             height={40}
-            priority
+            priority="true"
           />
           <h1 className="text-4xl font-semibold">FIXRR</h1>
         </div>
@@ -87,17 +150,40 @@ export default function Home() {
           <li className=" cursor-pointer">Services</li>
           <li className=" cursor-pointer">Testimonial</li>
         </ul>
-        <button className="border-2 border-white rounded-full  px-6 py-2 flex flex-row items-center justify-center gap-3 cursor-pointer hover:bg-white hover:text-black transition duration-300 ">
-          Book a Free call <MdOutlineArrowRightAlt />
-        </button>
+        <div className="flex flex-col items-end gap-2">
+          <div className="flex items-center gap-4">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              className="px-4 py-2 rounded-full bg-transparent border-2 border-white text-white placeholder-gray-300 focus:outline-none focus:border-white"
+              disabled={isLoading}
+            />
+            <button 
+              onClick={handleSubmit}
+              disabled={isLoading || !email}
+              className={`border-2 border-white rounded-full px-6 py-2 flex flex-row items-center justify-center gap-3 cursor-pointer transition duration-300 
+                ${isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-white hover:text-black'}`}
+            >
+              {isLoading ? 'Submitting...' : 'Book a Free call'} <MdOutlineArrowRightAlt />
+            </button>
+          </div>
+          {submitStatus === 'success' && (
+            <span className="text-green-400 text-sm">Thanks! We'll get back to you soon.</span>
+          )}
+          {submitStatus === 'error' && (
+            <span className="text-red-400 text-sm">Something went wrong. Please try again.</span>
+          )}
+        </div>
       </nav>
 
       <div className="main text-center justify-center items-center text-white w-[80%] relative top-20">
         <img
           src="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b964_spring.png"
           alt="spring"
-          fill
-          className="absolute inset-0 image-default -z-100  left-80"
+          style={{objectFit: 'fill'}}
+          className="absolute inset-0 image-default -z-100 left-80"
           quality={100}
           priority
           width={600}
@@ -322,11 +408,13 @@ export default function Home() {
         </ul>
       </div>
 
-      <div className="fade-div  flex flex-col inset-x-0 justify-between items-center text-center mb-20 relative top-52  gap-10 w-[80%]">
-        <h1 className="text-6xl w-[60%] font-bold">
+      <div className="flex flex-col inset-x-0 justify-between items-center text-center mb-20 relative top-52 gap-10 w-[80%]">
+        
+        
+        <h1 className="text-6xl w-[60%] font-bold mt-20">
           Worldwide Trust Built on Excellence
         </h1>
-        <div className="fade-div flex flex-row justify-between items-center testmonial-card mb-20">
+        <div className="flex flex-row justify-between items-center testmonial-card">
           <img
             src={testimonials[testimonialIndex].img}
             width={500}
@@ -365,6 +453,89 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="fade-div flex flex-col inset-x-0 items-center justify-between text-center w-[80%] mb-20 relative top-52 gap-10">
+        <div className="flex flex-row justify-between items-center inset-x-0 w-full">
+          <h1 className="text-5xl font-bold w-[40%] text-left">
+            Lets Collaborate with us
+          </h1>
+          <MdOutlineArrowOutward size={70} />
+        </div>
+
+        <div className=" flex flex-row justify-between items-center inset-x-0 w-full mb-10">
+          <div className="flex flex-col items-center justify-between gap-5 w-[25%]">
+            <div className="logo flex flex-row gap-5 items-center justify-center">
+              <img
+                src="/icon.webp"
+                alt="FIXRR agency logo"
+                width={40}
+                height={40}
+                priority
+              />
+              <h1 className="text-4xl font-semibold">FIXRR</h1>
+            </div>
+            <p className="text-base  text-left ">
+              We helps startup companies grow, with exceptional user experiences
+              to stand out in the market.
+            </p>
+          </div>
+          <div className="flex flex-col justify-between items-center gap-10 w-[25%]">
+            <h1 className="text-2xl">Links</h1>
+            <ul className="flex flex-col justify-between items-center gap-10">
+              <li className ="text-xl font-bold"><a href="https://instagram.com/ishefo0">Founder Instagram profile</a></li>
+              <li className ="text-xl font-bold"><a href="https://instagram.com/fixrr.agency">Agency Instagram profile</a></li>
+            </ul>
+          </div>
+          <div className="flex flex-col justify-between items-center gap-5 w-[25%]">
+            <h1>EGYPT | TANTA</h1>
+            <h1>Egypt Standard Time (EGY)</h1>
+            <a href="mailto:info.mail@gmail.com?subject=Hello"><div>fixrr@fixrr.agency</div></a>
+          </div>
+          <div className="flex flex-col justify-between items-center gap-5">
+            <h1>Links</h1>
+            <ul className="flex flex-row  items-center gap-10">
+              <li><a href=" ">
+                <FaLinkedin size={30}/>
+              </a></li>
+              <li><a href="https://instagram.com/fixrr.agency">
+                <FaInstagram size={30}/>
+              </a></li>
+              <li><a href="https://wa.me/+201274375560">
+                <FaWhatsapp size={30}/>
+              </a></li>
+            </ul>
+            <div className="w-full max-w-md flex flex-col">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email"
+            className="w-full px-6 py-3 mb-4 rounded-lg bg-transparent border-2 border-white text-white placeholder-gray-300 focus:outline-none focus:border-white"
+          />
+          <button 
+            onClick={handleSubmit}
+            disabled={isLoading || !email}
+            className={`w-full border-2 border-white rounded-lg px-6 py-3 flex items-center justify-center gap-3 cursor-pointer transition duration-300 
+              ${isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-white hover:text-black'}`}
+          >
+            {isLoading ? 'Submitting...' : 'Get in Touch'} <MdOutlineArrowRightAlt />
+          </button>
+          {submitStatus === 'success' && (
+            <span className="block mt-3 text-green-400">Thank you! We'll be in touch soon.</span>
+          )}
+          {submitStatus === 'error' && (
+            <span className="block mt-3 text-red-400">Something went wrong. Please try again.</span>
+          )}
+        </div>
+
+          </div>
+        </div>
+        <hr className="border w-full"/>
+
+        <p className="w-[40%]">@2025 FIXRR, Inc All rights reserved Made by Ahmed Sherif
+
+This is some text inside of a div block.</p>
       </div>
     </div>
   );
