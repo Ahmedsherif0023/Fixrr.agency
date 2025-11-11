@@ -14,6 +14,9 @@ import { IoArrowBackOutline } from "react-icons/io5";
 import { FaLinkedin } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 
 export default function Home() {
@@ -86,19 +89,19 @@ export default function Home() {
     {
       img: "https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b963_testimony-image-1.avif",
       text: '"Working with FIXRR was an absolute game-changer for our business. Their team brought creativity, professionalism, and innovation to every step of the project. Our brand has never looked better!"',
-      name: "Rebecca P.",
+      name: "Michael S.",
       title: "CEO of DynaMotion",
     },
     {
       img: "/client2.png",
       text: '"FIXRR exceeded our expectations. The process was smooth, and the results were outstanding. Highly recommended!"',
-      name: "Michael S.",
+      name: "Rebecca P.",
       title: "Founder of TechNova",
     },
     {
       img: "/client3.png",
       text: '"Professional, creative, and always on time. FIXRR is our go-to agency for all things digital."',
-      name: "Sara L.",
+      name: "John M.",
       title: "Marketing Lead at BrightEdge",
     },
   ];
@@ -114,24 +117,32 @@ export default function Home() {
       prev === testimonials.length - 1 ? 0 : prev + 1
     );
   };
-  useEffect(() => {
-    // Animate elements with fade + upward movement
+ useEffect(() => {
+  gsap.utils.toArray(".fade-div").forEach((el) => {
     gsap.fromTo(
-      ".fade-div",
-      { opacity: 0, y: 50 }, // start lower and invisible
+      el,
+      { opacity: 0, y: 50 },
       {
         opacity: 1,
         y: 0,
         duration: 1,
-        stagger: 0.3,
-        ease: "power3.out",
-        delay: 0.2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 80%", // start fade when element is near bottom of viewport
+          toggleActions: "play none none none", // play once
+        },
       }
     );
+  });
+      return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
   }, []);
 
   return (
-    <div className="flex min-h-screen items-center justify-between flex-col  w-full static">
+    
+    <div className="flex min-h-screen items-center justify-between flex-col  w-full static" id="home">
       <nav className="absolute  top-0 inset-x-0 z-50 flex flex-row items-center justify-between gap-15 m-auto p-6  text-white w-[80%]">
         <div className="logo flex flex-row gap-5 items-center justify-center">
           <img
@@ -144,41 +155,28 @@ export default function Home() {
           <h1 className="text-4xl font-semibold">FIXRR</h1>
         </div>
         <ul className="flex flex-row gap-7 text-lg ">
-          <li className=" cursor-pointer">Home</li>
-          <li className=" cursor-pointer">About Us</li>
-          <li className=" cursor-pointer">Projects</li>
-          <li className=" cursor-pointer">Services</li>
-          <li className=" cursor-pointer">Testimonial</li>
+          <li className=" cursor-pointer"><a href="#home">Home</a></li>
+          <li className=" cursor-pointer"><a href="#about">About Us</a></li>
+          <li className=" cursor-pointer"><a href="#projects">Projects</a></li>
+          <li className=" cursor-pointer"><a href="#services">Services</a></li>
+          <li className=" cursor-pointer"><a href="#testmonials">Testimonials</a></li>
         </ul>
         <div className="flex flex-col items-end gap-2">
-          <div className="flex items-center gap-4">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              className="px-4 py-2 rounded-full bg-transparent border-2 border-white text-white placeholder-gray-300 focus:outline-none focus:border-white"
-              disabled={isLoading}
-            />
-            <button 
-              onClick={handleSubmit}
-              disabled={isLoading || !email}
-              className={`border-2 border-white rounded-full px-6 py-2 flex flex-row items-center justify-center gap-3 cursor-pointer transition duration-300 
-                ${isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-white hover:text-black'}`}
+            <div className="flex items-center gap-4">
+          
+            <a
+              href="https://calendly.com/fixrragency"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-2 border-white rounded-full px-6 py-2 flex flex-row items-center justify-center gap-3 transition duration-300 hover:bg-white hover:text-black"
             >
-              {isLoading ? 'Submitting...' : 'Book a Free call'} <MdOutlineArrowRightAlt />
-            </button>
+              Book a Free call <MdOutlineArrowRightAlt />
+            </a>
           </div>
-          {submitStatus === 'success' && (
-            <span className="text-green-400 text-sm">Thanks! We'll get back to you soon.</span>
-          )}
-          {submitStatus === 'error' && (
-            <span className="text-red-400 text-sm">Something went wrong. Please try again.</span>
-          )}
         </div>
       </nav>
 
-      <div className="main text-center justify-center items-center text-white w-[80%] relative top-20">
+      <div className="main text-center justify-center items-center text-white w-[80%] relative top-20" id="home">
         <img
           src="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b964_spring.png"
           alt="spring"
@@ -218,9 +216,17 @@ export default function Home() {
                 Passionate Egyptian Team: Crafting Digital Solutions to Meet
                 Your Needs. Empower Your Brand with Innovation.
               </h1>
-              <button className="border-2 border-white rounded-full  px-6 py-2 flex flex-row items-center justify-center gap-3 cursor-pointer hover:bg-white hover:text-black transition duration-300 mt-5">
-                Book a Free call <MdOutlineArrowRightAlt />
-              </button>
+             <div className="flex items-center gap-4 mt-5">
+          
+            <a
+              href="https://calendly.com/fixrragency"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-2 border-white rounded-full px-6 py-2 flex flex-row items-center justify-center gap-3 transition duration-300 hover:bg-white hover:text-black"
+            >
+              Book a Free call <MdOutlineArrowRightAlt />
+            </a>
+          </div>
             </div>
           </div>
         </div>
@@ -234,7 +240,7 @@ export default function Home() {
         <IoLogoVercel size={55} />
       </div>
 
-      <div className="fade-div flex flex-col items-center justify-between inset-x-0 relative top-48 gap-20 w-[80%]">
+      <div className="fade-div flex flex-col items-center justify-between inset-x-0 relative top-48 gap-20 w-[80%]" id="about">
         <div className="flex flex-row items-center justify-between ">
           <h1 className="text-6xl font-semibold heading w-[60%] max-w-[45%] text-left">
             We make your business stand out
@@ -276,7 +282,7 @@ export default function Home() {
         <div className="bg-color-right -z-50"></div>
       </div>
 
-      <div className="flex flex-col items-center justify-center gap-10 mb-20 relative top-56 mt-20 inset-x-0 w-[80%]">
+      <div className="fade-div flex flex-col items-center justify-center gap-10 mb-20 relative top-56 mt-20 inset-x-0 w-[80%]" id="projects">
         <div className="flex flex-row inset-x-0 justify-between items-center w-full">
           <div className="flex flex-col justify-start items-start w-full">
             <h1 className="text-6xl font-semibold heading w-[60%] max-w-[75%] text-left ">
@@ -289,9 +295,17 @@ export default function Home() {
               branding, strategy, design and development services tailored to
               bring your ideas to life.
             </p>
-            <button className="border-2 border-white rounded-full  px-6 py-2 flex flex-row items-center justify-center gap-3 cursor-pointer hover:bg-white hover:text-black transition duration-300 mt-5">
+            <div className="flex items-center gap-4 mt-5">
+          
+            <a
+              href="https://calendly.com/fixrragency"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-2 border-white rounded-full px-6 py-2 flex flex-row items-center justify-center gap-3 transition duration-300 hover:bg-white hover:text-black"
+            >
               Book a Free call <MdOutlineArrowRightAlt />
-            </button>
+            </a>
+          </div>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-16">
@@ -300,7 +314,7 @@ export default function Home() {
               "https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b96f_home-work-image-1.avif"
             }
             service={"UI/UX Design"}
-            serviceName={"Wayflyer Dashboard"}
+            serviceName={"Custom App Designing"}
           />
           <Services
             link={
@@ -326,15 +340,15 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="offer-div fade-div  flex flex-col items-center justify-center gap-10 mb-20 relative top-56 mt-20 inset-x-0 w-[80%] text-white">
+      <div className="offer-div fade-div  flex flex-col items-center justify-center gap-10 mb-20 relative top-56 mt-20 inset-x-0 w-[80%] text-white" id="services">
         <h1 className="offer-head">We Offer Expertise in</h1>
         <ul className="offer-list">
           <div
             className={"offer-item " + (active === 0 ? "active" : "")}
             onClick={() => setActive(active === 0 ? null : 0)}
           >
-            <li>
-              <div className="offers">
+            <li className="fade-div">
+              <div className="offers ">
                 <h2>01</h2>
                 <h1>Brand Design</h1>
               </div>
@@ -352,7 +366,7 @@ export default function Home() {
             className={"offer-item " + (active === 1 ? "active" : "")}
             onClick={() => setActive(active === 1 ? null : 1)}
           >
-            <li>
+            <li  className="fade-div">
               <div className="offers">
                 <h2>02</h2>
                 <h1>UI/Ux Design</h1>
@@ -371,7 +385,7 @@ export default function Home() {
             className={"offer-item " + (active === 2 ? "active" : "")}
             onClick={() => setActive(active === 2 ? null : 2)}
           >
-            <li>
+            <li  className="fade-div">
               <div className="offers">
                 <h2>03</h2>
                 <h1>Web development</h1>
@@ -390,7 +404,7 @@ export default function Home() {
             className={"offer-item " + (active === 3 ? "active" : "")}
             onClick={() => setActive(active === 3 ? null : 3)}
           >
-            <li>
+            <li  className="fade-div">
               <div className="offers">
                 <h2>04</h2>
                 <h1>Strategy</h1>
@@ -408,7 +422,7 @@ export default function Home() {
         </ul>
       </div>
 
-      <div className="flex flex-col inset-x-0 justify-between items-center text-center mb-20 relative top-52 gap-10 w-[80%]">
+      <div className="fade-div flex flex-col inset-x-0 justify-between items-center text-center mb-20 relative top-52 gap-10 w-[80%]" id="testmonials">
         
         
         <h1 className="text-6xl w-[60%] font-bold mt-20">
@@ -416,17 +430,18 @@ export default function Home() {
         </h1>
         <div className="flex flex-row justify-between items-center testmonial-card">
           <img
+            key={`img-${testimonialIndex}`}
             src={testimonials[testimonialIndex].img}
             width={500}
-            className="rounded-3xl"
+            className="rounded-3xl testimonial-fade-in"
             alt={testimonials[testimonialIndex].name}
           />
           <div className="flex flex-col justify-center items-center gap-24">
-            <p className="text-2xl text-left font-bold w-[70%]">
+            <p key={`text-${testimonialIndex}`} className="text-2xl text-left font-bold w-[70%] testimonial-fade-in">
               {testimonials[testimonialIndex].text}
             </p>
             <div className="flex flex-row justify-between items-center w-[70%] inset-x-0">
-              <div className="flex flex-col justify-start items-start">
+              <div key={`info-${testimonialIndex}`} className="flex flex-col justify-start items-start testimonial-fade-in">
                 <h1 className="font-bold text-[25px]">
                   {testimonials[testimonialIndex].name}
                 </h1>
@@ -460,7 +475,14 @@ export default function Home() {
           <h1 className="text-5xl font-bold w-[40%] text-left">
             Lets Collaborate with us
           </h1>
-          <MdOutlineArrowOutward size={70} />
+            <a
+              href="https://calendly.com/fixrragency"
+              target="_blank"
+              rel="noopener noreferrer"
+              className=" border-white rounded-full flex flex-row items-center justify-center gap-3 transition duration-300 hover:bg-white hover:text-black"
+            >
+              <MdOutlineArrowOutward size={70}/>
+            </a>
         </div>
 
         <div className=" flex flex-row justify-between items-center inset-x-0 w-full mb-10">
@@ -483,8 +505,8 @@ export default function Home() {
           <div className="flex flex-col justify-between items-center gap-10 w-[25%]">
             <h1 className="text-2xl">Links</h1>
             <ul className="flex flex-col justify-between items-center gap-10">
-              <li className ="text-xl font-bold"><a href="https://instagram.com/ishefo0">Founder Instagram profile</a></li>
-              <li className ="text-xl font-bold"><a href="https://instagram.com/fixrr.agency">Agency Instagram profile</a></li>
+              <li className ="text-xl font-bold w-[75%]"><a href="https://instagram.com/ishefo0">Founder Insta profile</a></li>
+              <li className ="text-xl font-bold w-[75%]"><a href="https://instagram.com/fixrr.agency">Agency Insta profile</a></li>
             </ul>
           </div>
           <div className="flex flex-col justify-between items-center gap-5 w-[25%]">
@@ -533,9 +555,7 @@ export default function Home() {
         </div>
         <hr className="border w-full"/>
 
-        <p className="w-[40%]">@2025 FIXRR, Inc All rights reserved Made by Ahmed Sherif
-
-This is some text inside of a div block.</p>
+        <p className="w-[40%] mb-2">@2025 FIXRR, Inc All rights reserved Made by Ahmed Sherif</p>
       </div>
     </div>
   );

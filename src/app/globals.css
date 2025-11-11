@@ -18,6 +18,9 @@ body {
     transform: rotate(360deg);
   }
 }
+html {
+  scroll-behavior: smooth;
+}
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -87,6 +90,7 @@ nav button:hover {
 
 .service-holder:hover img {
   transform: scale(1.1); /* zoom in */
+  z-index: 150;
 }
 
 .service-holder:hover .text-div {
@@ -150,7 +154,7 @@ nav button:hover {
   transition: opacity 500ms ease, transform 500ms ease,
     visibility 0s linear 500ms;
   pointer-events: none; /* so it doesn't block hover/clicks */
-  z-index: 50;
+  z-index: 150;
 }
 .offer-div .offer-list li:hover img {
   opacity: 1;
@@ -177,6 +181,7 @@ nav button:hover {
   font-weight: 500;
 }
 
+
 .offer-item {
   cursor: pointer;
   /* let content size determine height; keep a small min-height for layout stability */
@@ -196,6 +201,7 @@ nav button:hover {
   width: auto;
   margin-top: 0.75rem;
   color: inherit;
+  z-index: -1;
 }
 .offer-item.active p {
   opacity: 1;
@@ -222,4 +228,23 @@ nav button:hover {
 .arrows:hover svg {
   border: none;
   transition: all 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.testimonial-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.testmonial-card img,
+.testmonial-card p,
+.testmonial-card h1 {
+  transition: opacity 0.5s ease-in-out;
 }
