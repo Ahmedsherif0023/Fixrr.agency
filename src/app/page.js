@@ -277,41 +277,42 @@ export default function Home() {
         </div>
       </div>
 
-     <div className="w-full px-6 md:px-20 flex flex-col md:flex-row items-center justify-between gap-10 mt-40 mb-40 relative top-48">
-  {/* Images - left on large screens */}
-  <div className="w-full md:w-1/2 flex justify-center md:justify-start mb-10 md:mb-0">
-    <div className="fade-div flex flex-row md:flex-col items-center justify-center gap-5 md:gap-10">
-      <div className="relative w-32 h-32 flex items-center justify-center">
-        <img
-          src="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b952_Scroll%20Button.png"
-          loading="lazy"
-          className="spin-slow absolute inset-0 w-full h-full object-cover"
-        />
-        <img
-          src="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b954_arrow.svg"
-          className="hero_rotating-badge_arrow absolute w-10 h-10 object-contain"
-        />
-      </div>
-    </div>
-  </div>
+      <div className="w-full px-6 md:px-20 flex flex-col md:flex-row items-center justify-between gap-10 mt-40 mb-40 relative top-48">
+        {/* Images - left on large screens */}
+        <div className="w-full md:w-1/2 flex justify-center md:justify-start mb-10 md:mb-0">
+          <div className="fade-div flex flex-row md:flex-col items-center justify-center gap-5 md:gap-10">
+            <div className="relative w-32 h-32 flex items-center justify-center">
+              <img
+                src="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b952_Scroll%20Button.png"
+                loading="lazy"
+                className="spin-slow absolute inset-0 w-full h-full object-cover"
+              />
+              <img
+                src="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b954_arrow.svg"
+                className="hero_rotating-badge_arrow absolute w-10 h-10 object-contain"
+              />
+            </div>
+          </div>
+        </div>
 
-  {/* Text - right on large screens */}
-  <div className="w-full md:w-1/2 flex flex-col gap-7 text-center md:text-left">
-    <h1 className="font-semibold heading text-lg sm:text-xl md:text-2xl lg:text-3xl max-w-md">
-      Passionate Egyptian Team: Crafting Digital Solutions to Meet Your Needs. Empower Your Brand with Innovation.
-    </h1>
-    <div className="flex items-center gap-4 mt-5 justify-center md:justify-start">
-      <a
-        href="https://calendly.com/fixrragency"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="border-2 border-white rounded-full px-6 py-2 flex flex-row items-center justify-center gap-3 transition duration-300 hover:bg-white hover:text-black"
-      >
-        Book a Free call <MdOutlineArrowRightAlt />
-      </a>
-    </div>
-  </div>
-</div>
+        {/* Text - right on large screens */}
+        <div className="w-full md:w-1/2 flex flex-col gap-7 text-center md:text-left">
+          <h1 className="font-semibold heading text-lg sm:text-xl md:text-2xl lg:text-3xl max-w-md">
+            Passionate Egyptian Team: Crafting Digital Solutions to Meet Your
+            Needs. Empower Your Brand with Innovation.
+          </h1>
+          <div className="flex items-center gap-4 mt-5 justify-center md:justify-start">
+            <a
+              href="https://calendly.com/fixrragency"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-2 border-white rounded-full px-6 py-2 flex flex-row items-center justify-center gap-3 transition duration-300 hover:bg-white hover:text-black"
+            >
+              Book a Free call <MdOutlineArrowRightAlt />
+            </a>
+          </div>
+        </div>
+      </div>
 
       <div className="fade-div w-full flex flex-wrap md:flex-row items-center justify-center gap-6 md:gap-12 text-white relative top-36 mb-20">
         <FaFigma className="text-[40px] sm:text-[45px] md:text-[55px]" />
@@ -449,37 +450,45 @@ export default function Home() {
         className="offer-div fade-div flex flex-col items-center justify-center gap-6 mb-16 relative top-20 mt-28 inset-x-0 w-[90%] text-white"
         id="services"
       >
-       <h1 className="offer-head text-xl sm:text-2xl md:text-5xl text-center leading-snug md:leading-tight">
-  We Offer Expertise in
-</h1>
-       <ul className="offer-list w-full flex flex-col gap-4 relative">
-  {services.map((s, i) => (
-    <div
-      key={i}
-      className={`offer-item relative ${active === i ? "active" : ""} w-full`}
-      onClick={() => setActive(active === i ? null : i)}
-    >
-      <li className="fade-div flex flex-col md:flex-row items-start gap-2 md:gap-6 relative">
-        <div className="offers flex flex-col gap-1 z-10">
-          <h2 className="text-sm sm:text-base md:text-xl font-bold">{s.number}</h2>
-          <h1 className="text-sm sm:text-base md:text-2xl font-semibold">{s.title}</h1>
-        </div>
+        <h1 className="offer-head text-xl sm:text-2xl md:text-5xl text-center leading-snug md:leading-tight">
+          We Offer Expertise in
+        </h1>
+        <ul className="offer-list w-full flex flex-col gap-4 relative">
+          {services.map((s, i) => (
+            <div
+              key={i}
+              className={`offer-item relative ${
+                active === i ? "active" : ""
+              } w-full`}
+              onClick={() => setActive(active === i ? null : i)}
+            >
+              <li className="fade-div flex flex-col md:flex-row items-start gap-2 md:gap-6 relative">
+                <div className="offers flex flex-col gap-1 z-10">
+                  <h2 className="text-sm sm:text-base md:text-xl font-bold">
+                    {s.number}
+                  </h2>
+                  <h1 className="text-sm sm:text-base md:text-2xl font-semibold">
+                    {s.title}
+                  </h1>
+                </div>
 
-        {/* Image & arrow hidden on small screens, positioned absolutely on large screens */}
-        <div className="hidden md:flex flex-row items-center gap-3 absolute right-0 top-0 md:top-1/2 md:translate-y-[-50%] z-20">
-          <img
-            src={s.img}
-            className="w-32  absolute  rounded-3xl"
-            alt={s.title}
-          />
-          <MdOutlineArrowOutward size={40} />
-        </div>
-      </li>
-      <p className="text-xs sm:text-sm md:text-base mt-1">{s.text}</p>
-      {i < services.length - 1 && <hr className="mt-3 border-white/30" />}
-    </div>
-  ))}
-</ul>
+                {/* Image & arrow hidden on small screens, positioned absolutely on large screens */}
+                <div className="hidden md:flex flex-row items-center gap-3 absolute right-0 top-0 md:top-1/2 md:translate-y-[-50%] z-20">
+                  <img
+                    src={s.img}
+                    className="w-32  absolute  rounded-3xl"
+                    alt={s.title}
+                  />
+                  <MdOutlineArrowOutward size={40} />
+                </div>
+              </li>
+              <p className="text-xs sm:text-sm md:text-base mt-1">{s.text}</p>
+              {i < services.length - 1 && (
+                <hr className="mt-3 border-white/30" />
+              )}
+            </div>
+          ))}
+        </ul>
       </div>
 
       <div
@@ -495,8 +504,7 @@ export default function Home() {
   <img
     key={`img-${testimonialIndex}`}
     src={testimonials[testimonialIndex].img}
-    width={500}
-    className="rounded-3xl testimonial-fade-in w-full md:w-auto"
+    className="rounded-3xl testimonial-fade-in w-full sm:w-3/4 md:w-1/2 lg:w-2/5 max-w-[400px] object-cover"
     alt={testimonials[testimonialIndex].name}
   />
 
@@ -547,98 +555,140 @@ export default function Home() {
       </div>
 
       <div className="fade-div flex flex-col inset-x-0 items-center justify-between text-center w-[80%] mb-20 relative top-52 gap-10">
-      <div className="flex flex-row justify-between items-center inset-x-0 w-full gap-4 md:gap-0">
-  <h1 className="text-lg sm:text-3xl md:text-5xl font-bold w-full sm:w-4/5 md:w-[40%] text-left">
-    Lets Collaborate with us
-  </h1>
-  <a
-    href="https://calendly.com/fixrragency"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="border-white rounded-full flex flex-row items-center justify-center gap-3 transition duration-300 hover:bg-white hover:text-black"
-  >
-    <MdOutlineArrowOutward size={50} className="sm:size-[60] md:size-[70]" />
-  </a>
-</div>
+        <div className="flex flex-row justify-between items-center inset-x-0 w-full gap-4 md:gap-0">
+          <h1 className="text-lg sm:text-3xl md:text-5xl font-bold w-full sm:w-4/5 md:w-[40%] text-left">
+            Lets Collaborate with us
+          </h1>
+          <a
+            href="https://calendly.com/fixrragency"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border-white rounded-full flex flex-row items-center justify-center gap-3 transition duration-300 hover:bg-white hover:text-black"
+          >
+            <MdOutlineArrowOutward
+              size={50}
+              className="sm:size-[60] md:size-[70]"
+            />
+          </a>
+        </div>
 
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center inset-x-0 w-full mb-10 gap-10 md:gap-0">
-  {/* Column 1 */}
-  <div className="flex flex-col items-start gap-3 w-full md:w-[25%]">
-    <div className="logo flex flex-row gap-3 items-center">
-      <img src="/icon.webp" alt="FIXRR agency logo" width={40} height={40} priority />
-      <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold">FIXRR</h1>
-    </div>
-    <p className="text-sm sm:text-base md:text-base text-left">
-      We help startup companies grow, with exceptional user experiences to stand out in the market.
-    </p>
-  </div>
+          {/* Column 1 */}
+          <div className="flex flex-col items-start gap-3 w-full md:w-[25%]">
+            <div className="logo flex flex-row gap-3 items-center">
+              <img
+                src="/icon.webp"
+                alt="FIXRR agency logo"
+                width={40}
+                height={40}
+                priority
+              />
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold">
+                FIXRR
+              </h1>
+            </div>
+            <p className="text-sm sm:text-base md:text-base text-left">
+              We help startup companies grow, with exceptional user experiences
+              to stand out in the market.
+            </p>
+          </div>
 
-  {/* Column 2 */}
-  <div className="flex flex-col items-start gap-3 w-full md:w-[25%]">
-    <h1 className="text-lg sm:text-xl md:text-2xl font-semibold">Links</h1>
-    <ul className="flex flex-col gap-3">
-      <li className="text-sm sm:text-base font-bold">
-        <a href="https://instagram.com/ishefo0">Founder Insta profile</a>
-      </li>
-      <li className="text-sm sm:text-base font-bold">
-        <a href="https://instagram.com/fixrr.agency">Agency Insta profile</a>
-      </li>
-    </ul>
-  </div>
+          {/* Column 2 */}
+          <div className="flex flex-col items-start gap-3 w-full md:w-[25%]">
+            <h1 className="text-lg sm:text-xl md:text-2xl font-semibold">
+              Links
+            </h1>
+            <ul className="flex flex-col gap-3">
+              <li className="text-sm sm:text-base font-bold">
+                <a href="https://instagram.com/ishefo0">
+                  Founder Insta profile
+                </a>
+              </li>
+              <li className="text-sm sm:text-base font-bold">
+                <a href="https://instagram.com/fixrr.agency">
+                  Agency Insta profile
+                </a>
+              </li>
+            </ul>
+          </div>
 
-  {/* Column 3 */}
-  <div className="flex flex-col items-start gap-2 w-full md:w-[25%]">
-    <h1 className="text-sm sm:text-base md:text-base">EGYPT | TANTA</h1>
-    <h1 className="text-sm sm:text-base md:text-base">Egypt Standard Time (EGY)</h1>
-    <a href="mailto:info.mail@gmail.com?subject=Hello" className="text-sm sm:text-base md:text-base">
-      fixrr@fixrr.agency
-    </a>
-  </div>
+          {/* Column 3 */}
+          <div className="flex flex-col items-start gap-2 w-full md:w-[25%]">
+            <h1 className="text-sm sm:text-base md:text-base">EGYPT | TANTA</h1>
+            <h1 className="text-sm sm:text-base md:text-base">
+              Egypt Standard Time (EGY)
+            </h1>
+            <a
+              href="mailto:info.mail@gmail.com?subject=Hello"
+              className="text-sm sm:text-base md:text-base"
+            >
+              fixrr@fixrr.agency
+            </a>
+          </div>
 
-  {/* Column 4 */}
-  <div className="flex flex-col items-start gap-3 w-full md:w-[25%]">
-    <h1 className="text-lg sm:text-xl md:text-2xl font-semibold">Contact Links</h1>
-    <ul className="flex flex-row gap-4 md:gap-6">
-      <li><a href="#"><FaLinkedin size={25} /></a></li>
-      <li><a href="https://instagram.com/fixrr.agency"><FaInstagram size={25} /></a></li>
-      <li><a href="https://wa.me/+201274375560"><FaWhatsapp size={25} /></a></li>
-    </ul>
+          {/* Column 4 */}
+          <div className="flex flex-col items-start gap-3 w-full md:w-[25%]">
+            <h1 className="text-lg sm:text-xl md:text-2xl font-semibold">
+              Contact Links
+            </h1>
+            <ul className="flex flex-row gap-4 md:gap-6">
+              <li>
+                <a href="#">
+                  <FaLinkedin size={25} />
+                </a>
+              </li>
+              <li>
+                <a href="https://instagram.com/fixrr.agency">
+                  <FaInstagram size={25} />
+                </a>
+              </li>
+              <li>
+                <a href="https://wa.me/+201274375560">
+                  <FaWhatsapp size={25} />
+                </a>
+              </li>
+            </ul>
 
-    {/* Newsletter */}
-    <div className="w-full max-w-md flex flex-col mt-3">
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Enter your email"
-        className="w-full px-4 py-2 mb-3 rounded-lg bg-transparent border-2 border-white text-white placeholder-gray-300 focus:outline-none focus:border-white text-sm sm:text-base"
-      />
-      <button
-        onClick={handleSubmit}
-        disabled={isLoading || !email}
-        className={`w-full border-2 border-white rounded-lg px-4 py-2 flex items-center justify-center gap-2 cursor-pointer transition duration-300 text-sm sm:text-base 
-        ${isLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-white hover:text-black"}`}
-      >
-        {isLoading ? "Submitting..." : "Get in Touch"} <MdOutlineArrowRightAlt size={20} className="sm:size-[24]" />
-      </button>
-      {submitStatus === "success" && (
-        <span className="block mt-2 text-green-400 text-sm sm:text-base">
-          Thank you! We'll be in touch soon.
-        </span>
-      )}
-      {submitStatus === "error" && (
-        <span className="block mt-2 text-red-400 text-sm sm:text-base">
-          Something went wrong. Please try again.
-        </span>
-      )}
-    </div>
-  </div>
-</div>
+            {/* Newsletter */}
+            <div className="w-full max-w-md flex flex-col mt-3">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                className="w-full px-4 py-2 mb-3 rounded-lg bg-transparent border-2 border-white text-white placeholder-gray-300 focus:outline-none focus:border-white text-sm sm:text-base"
+              />
+              <button
+                onClick={handleSubmit}
+                disabled={isLoading || !email}
+                className={`w-full border-2 border-white rounded-lg px-4 py-2 flex items-center justify-center gap-2 cursor-pointer transition duration-300 text-sm sm:text-base 
+        ${
+          isLoading
+            ? "opacity-50 cursor-not-allowed"
+            : "hover:bg-white hover:text-black"
+        }`}
+              >
+                {isLoading ? "Submitting..." : "Get in Touch"}{" "}
+                <MdOutlineArrowRightAlt size={20} className="sm:size-[24]" />
+              </button>
+              {submitStatus === "success" && (
+                <span className="block mt-2 text-green-400 text-sm sm:text-base">
+                  Thank you! We'll be in touch soon.
+                </span>
+              )}
+              {submitStatus === "error" && (
+                <span className="block mt-2 text-red-400 text-sm sm:text-base">
+                  Something went wrong. Please try again.
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
         <hr className="border w-full" />
 
-<p className="w-full sm:w-[60%] md:w-[40%] text-xs sm:text-sm md:text-base mb-2">
-  @2025 FIXRR, Inc All rights reserved. Made by Ahmed Sherif
-</p>
+        <p className="w-full sm:w-[60%] md:w-[40%] text-xs sm:text-sm md:text-base mb-2">
+          @2025 FIXRR, Inc All rights reserved. Made by Ahmed Sherif
+        </p>
       </div>
     </div>
   );
