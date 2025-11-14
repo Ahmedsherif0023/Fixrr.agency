@@ -116,10 +116,28 @@ nav button:hover {
 }
 
 .offer-div .offer-head {
-  font-size: 4rem;
+  font-size: 4rem; /* default desktop size */
   font-weight: 600;
   width: 50%;
   text-align: center;
+  margin: 0 auto; /* center horizontally */
+}
+
+/* Medium screens (tablets) */
+@media (max-width: 768px) {
+  .offer-div .offer-head {
+    font-size: 2.5rem;
+    width: 70%;
+  }
+  
+}
+
+/* Small screens (mobile) */
+@media (max-width: 480px) {
+  .offer-div .offer-head {
+    font-size: 1.6rem;
+    width: 90%;
+  }
 }
 
 .offer-div .offer-list {
@@ -163,9 +181,27 @@ nav button:hover {
   transition-delay: 0s;
 }
 
+/* Service titles inside li */
 .offer-div .offer-list li h1 {
-  font-size: 3rem;
+  font-size: 3rem; /* default desktop */
   font-weight: 800;
+  
+}
+
+
+
+/* Medium screens (tablet) */
+@media (max-width: 768px) {
+  .offer-div .offer-list li h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Small screens (mobile) */
+@media (max-width: 480px) {
+  .offer-div .offer-list li h1 {
+    font-size: 1.5rem;
+  }
 }
 .offer-div .offer-list li hr {
   width: 40%;

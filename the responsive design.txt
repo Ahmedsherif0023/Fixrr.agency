@@ -1,0 +1,303 @@
+"use client";
+import { MdOutlineArrowRightAlt, MdOutlineArrowOutward } from "react-icons/md";
+import { useEffect, useState } from "react";
+import { gsap } from "gsap";
+import { FaFigma, FaReact, FaNodeJs, FaLinkedin, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { RiJavascriptFill } from "react-icons/ri";
+import { IoLogoVercel, IoArrowForwardSharp, IoArrowBackOutline } from "react-icons/io5";
+import { Services } from "./components/Services.jsx";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { FaBars, FaTimes } from "react-icons/fa";
+
+gsap.registerPlugin(ScrollTrigger);
+
+export default function Home() {
+  const [active, setActive] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  // Form submission
+  const handleSubmit = async () => {
+    if (!email || isLoading) return;
+    
+    setIsLoading(true);
+    setSubmitStatus(null);
+    
+    try {
+      const formData = new URLSearchParams();
+      formData.append('email', email);
+      formData.append('source', 'Website Form');
+      const url = `https://script.google.com/macros/s/AKfycbyCi_3HZ0VCqDDMlS3kq8kuT7SlsGTUidL4J2y67yKkX8ljwTlCX3Zaevi1lFIE30lE/exec?${formData.toString()}`;
+      const script = document.createElement('script');
+      script.src = url;
+      const submitPromise = new Promise((resolve, reject) => {
+        window.handleGoogleResponse = (response) => {
+          if (response.status === 'success') resolve(response);
+          else reject(new Error(response.message || 'Submission failed'));
+          delete window.handleGoogleResponse;
+          document.body.removeChild(script);
+        };
+        script.onerror = () => {
+          reject(new Error('Failed to submit form'));
+          delete window.handleGoogleResponse;
+          document.body.removeChild(script);
+        };
+      });
+      document.body.appendChild(script);
+      await submitPromise;
+      setSubmitStatus('success');
+      setEmail('');
+    } catch (err) {
+      console.error('Submission error:', err);
+      setSubmitStatus('error');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Testimonials
+  const testimonials = [
+    {
+      img: "https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b963_testimony-image-1.avif",
+      text: '"Working with FIXRR was an absolute game-changer for our business. Their team brought creativity, professionalism, and innovation to every step of the project. Our brand has never looked better!"',
+      name: "Michael S.",
+      title: "CEO of DynaMotion",
+    },
+    {
+      img: "/client2.png",
+      text: '"FIXRR exceeded our expectations. The process was smooth, and the results were outstanding. Highly recommended!"',
+      name: "Rebecca P.",
+      title: "Founder of TechNova",
+    },
+    {
+      img: "/client3.png",
+      text: '"Professional, creative, and always on time. FIXRR is our go-to agency for all things digital."',
+      name: "John M.",
+      title: "Marketing Lead at BrightEdge",
+    },
+  ];
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
+  const handlePrevTestimonial = () => setTestimonialIndex(prev => prev === 0 ? testimonials.length - 1 : prev - 1);
+  const handleNextTestimonial = () => setTestimonialIndex(prev => prev === testimonials.length - 1 ? 0 : prev + 1);
+
+  // GSAP animations
+  useEffect(() => {
+    gsap.utils.toArray(".fade-div").forEach((el) => {
+      gsap.fromTo(
+        el,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    });
+    return () => ScrollTrigger.getAll().forEach((t) => t.kill());
+  }, []);
+
+  return (
+    <div className="flex flex-col min-h-screen w-full relative">
+      {/* Navbar */}
+      <nav className="fixed top-0 inset-x-0 z-50 flex items-center justify-between p-6 bg-black text-white w-full">
+        <div className="flex items-center gap-3">
+          <img src="/icon.webp" alt="logo" className="w-10 h-10" />
+          <h1 className="text-2xl sm:text-3xl font-semibold">FIXRR</h1>
+        </div>
+
+        {/* Desktop Menu */}
+        <ul className="hidden md:flex flex-row gap-7 text-lg">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+        </ul>
+
+        {/* Burger Icon */}
+        <div className="md:hidden">
+          <button onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <FaTimes size={25} /> : <FaBars size={25} />}
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className="md:hidden absolute top-20 left-0 w-full bg-black text-white flex flex-col items-center gap-6 py-6 z-40">
+          <a href="#home" onClick={() => setMenuOpen(false)}>Home</a>
+          <a href="#about" onClick={() => setMenuOpen(false)}>About Us</a>
+          <a href="#projects" onClick={() => setMenuOpen(false)}>Projects</a>
+          <a href="#services" onClick={() => setMenuOpen(false)}>Services</a>
+          <a href="#testimonials" onClick={() => setMenuOpen(false)}>Testimonials</a>
+        </div>
+      )}
+
+      {/* Hero Section */}
+      <section id="home" className="flex flex-col items-center justify-center text-center w-full mt-20 sm:mt-28 md:mt-32 px-4 sm:px-6">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold fade-div">
+          Emotion-Driven Design: Building Brand Loyalty
+        </h1>
+        <p className="mt-6 text-base sm:text-lg md:text-xl max-w-2xl fade-div">
+          Passionate Egyptian Team: Crafting Digital Solutions to Meet Your Needs.
+        </p>
+        <a
+          href="https://calendly.com/fixrragency"
+          className="mt-6 inline-flex items-center gap-3 border-2 border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition fade-div"
+        >
+          Book a Free Call <MdOutlineArrowRightAlt />
+        </a>
+      </section>
+
+      {/* Technologies */}
+      <div className="fade-div flex flex-wrap justify-center items-center gap-8 mt-20">
+        <FaFigma size={45} />
+        <RiJavascriptFill size={45} />
+        <FaReact size={45} />
+        <FaNodeJs size={45} />
+        <IoLogoVercel size={45} />
+      </div>
+
+      {/* About Section */}
+      <section id="about" className="w-full mt-32 px-4 sm:px-6 fade-div">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-10">
+          <div className="md:w-[50%]">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">We make your business stand out</h2>
+            <p className="text-base sm:text-lg md:text-xl">
+              At Fixrr, we are the architects of distinctive and memorable creative experiences.
+            </p>
+          </div>
+          <img
+            src="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b965_round_tube.png"
+            alt="hero image"
+            className="w-full md:w-[45%] rounded-xl"
+          />
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="w-full mt-32 px-4 sm:px-6 fade-div">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">Impact We Created</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <Services
+            link="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b96f_home-work-image-1.avif"
+            service="UI/UX Design"
+            serviceName="Custom App Designing"
+          />
+          <Services
+            link="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b970_work-image-%20(3).avif"
+            service="Branding & Logo"
+            serviceName="Visual Identity"
+          />
+          <Services
+            link="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b971_work-image-%20(2).avif"
+            service="Digital Marketing"
+            serviceName="Social Media Marketing"
+          />
+          <Services
+            link="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b974_work-image-%20(1).avif"
+            service="Custom Software Development"
+            serviceName="Elevate Your App"
+          />
+        </div>
+      </section>
+
+      {/* Offer Section */}
+      <section id="services" className="w-full mt-32 px-4 sm:px-6 fade-div">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-center">We Offer Expertise in</h2>
+        <ul className="space-y-8">
+          {["Brand Design", "UI/UX Design", "Web Development", "Strategy"].map((title, i) => (
+            <li key={i} className={`fade-div border p-4 rounded-lg cursor-pointer ${active === i ? "bg-gray-900" : ""}`} onClick={() => setActive(active === i ? null : i)}>
+              <div className="flex justify-between items-center">
+                <h3 className="text-xl font-bold">{title}</h3>
+                <MdOutlineArrowOutward size={30} />
+              </div>
+              <p className="mt-2 text-sm">
+                {title === "Brand Design" && "We craft unique brand identities — from logos, colors, and typography to complete visual systems."}
+                {title === "UI/UX Design" && "We design clean, intuitive, and user-focused interfaces that elevate digital experiences."}
+                {title === "Web Development" && "We build fast, responsive, and scalable websites tailored to your brand and goals."}
+                {title === "Strategy" && "We create smart brand and marketing strategies that drive growth and impact."}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Testimonials Section */}
+      <section id="testimonials" className="w-full mt-32 px-4 sm:px-6 fade-div">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-center">Worldwide Trust Built on Excellence</h2>
+        <div className="flex flex-col md:flex-row justify-center items-center gap-8">
+          <img src={testimonials[testimonialIndex].img} alt={testimonials[testimonialIndex].name} className="w-full md:w-[400px] rounded-2xl" />
+          <div className="flex flex-col justify-center gap-4">
+            <p className="text-base sm:text-lg md:text-xl font-semibold">{testimonials[testimonialIndex].text}</p>
+            <h3 className="text-lg font-bold">{testimonials[testimonialIndex].name}</h3>
+            <p className="text-sm">{testimonials[testimonialIndex].title}</p>
+            <div className="flex gap-4">
+              <IoArrowBackOutline size={30} className="cursor-pointer" onClick={handlePrevTestimonial} />
+              <IoArrowForwardSharp size={30} className="cursor-pointer" onClick={handleNextTestimonial} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="w-full mt-32 px-4 sm:px-6 py-10 bg-black text-white fade-div">
+        <div className="flex flex-col md:flex-row justify-between gap-6">
+          <div>
+            <img src="/icon.webp" alt="logo" className="w-10 h-10" />
+            <h1 className="text-2xl font-bold">FIXRR</h1>
+            <p className="text-sm mt-2">We help startups grow with exceptional user experiences.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Links</h3>
+            <ul className="space-y-2 mt-2">
+              <li><a href="https://instagram.com/ishefo0">Founder Insta</a></li>
+              <li><a href="https://instagram.com/fixrr.agency">Agency Insta</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-semibold">Contact</h3>
+            <p>EGYPT | TANTA</p>
+            <a href="mailto:fixrr@fixrr.agency">fixrr@fixrr.agency</a>
+          </div>
+          <div className="flex flex-col gap-4">
+            <h3 className="font-semibold">Follow Us</h3>
+            <div className="flex gap-4">
+              <FaLinkedin size={25} />
+              <FaInstagram size={25} />
+              <FaWhatsapp size={25} />
+            </div>
+            <div className="mt-4">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                className="w-full px-3 py-2 rounded bg-transparent border border-white text-white placeholder-gray-400 focus:outline-none"
+              />
+              <button
+                onClick={handleSubmit}
+                disabled={isLoading || !email}
+                className="w-full mt-2 px-3 py-2 rounded border border-white hover:bg-white hover:text-black transition disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isLoading ? "Submitting..." : "Get in Touch"}
+              </button>
+              {submitStatus === "success" && <p className="text-green-400 mt-2">Thank you! We'll be in touch soon.</p>}
+              {submitStatus === "error" && <p className="text-red-400 mt-2">Something went wrong. Please try again.</p>}
+            </div>
+          </div>
+        </div>
+        <hr className="my-6 border-gray-600" />
+        <p className="text-center text-sm">@2025 FIXRR, Inc All rights reserved. Made by Ahmed Sherif</p>
+      </footer>
+    </div>
+  );
+}
