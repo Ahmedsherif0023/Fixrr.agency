@@ -323,11 +323,11 @@ export default function Home() {
       </div>
 
       <div
-        className="fade-div flex flex-col items-center justify-between inset-x-0 relative top-48 gap-20 w-[80%]"
+        className="fade-div flex flex-col items-center justify-between inset-x-0 relative top-48 gap-30 w-[80%]"
         id="about"
       >
         <div
-          className="fade-div flex flex-col md:flex-row items-center justify-between inset-x-0 relative top-48 gap-10 w-[80%] mx-auto"
+          className="fade-div flex flex-col md:flex-row items-center justify-between inset-x-0 relative top-0 gap-10 w-[80%] mx-auto"
           id="about"
         >
           <h1 className="text-2xl  text-center sm:text-3xl md:text-5xl lg:text-6xl font-semibold heading w-full md:w-[60%] max-w-full md:max-w-[45%] md:text-left md:my-10">
