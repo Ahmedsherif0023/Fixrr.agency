@@ -420,28 +420,32 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16">
           <Services
-            link="https://www.figma.com/proto/EtpGIhuhL54mqVgcgo8398/Pharmacy-Store---Ecommerce-Medicinal-Store--Community-?node-id=16-386&t=j6frROhMTF5zTdmz-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1"
+            link="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b96f_home-work-image-1.avif"
             service="UI/UX Design"
             serviceName="Custom App Designing"
             className="text-sm sm:text-base md:text-lg"
+            serviceLink="https://www.figma.com/proto/EtpGIhuhL54mqVgcgo8398/Pharmacy-Store---Ecommerce-Medicinal-Store--Community-?node-id=16-386&t=j6frROhMTF5zTdmz-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1"
           />
           <Services
             link="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b970_work-image-%20(3).avif"
             service="Branding & Logo"
             serviceName="Visual Identity"
             className="text-sm sm:text-base md:text-lg"
+            serviceLink="https://calendly.com/fixrragency"
           />
           <Services
             link="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b971_work-image-%20(2).avif"
             service="Digital Marketing"
             serviceName="Social Media Marketing"
             className="text-sm sm:text-base md:text-lg"
+            serviceLink="https://calendly.com/fixrragency"
           />
           <Services
-            link="https://www.figma.com/proto/nJe1D4czQvef0rhicPwpn3/Future-Pharmacy-Mobile-App-UI-Design-By-Project-Manager-Rakib-Hasan-Community?node-id=0-1&p=f&t=e8swY3wU2j3VMPt5-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1"
+            link="https://cdn.prod.website-files.com/68fbf3ba4c59bf6b6664b8c9/68fbf3bb4c59bf6b6664b974_work-image-%20(1).avif"
             service="Custom Software Development"
             serviceName="Elevate Your App"
             className="text-sm sm:text-base md:text-lg"
+            serviceLink="https://www.figma.com/proto/nJe1D4czQvef0rhicPwpn3/Future-Pharmacy-Mobile-App-UI-Design-By-Project-Manager-Rakib-Hasan-Community?node-id=0-1&p=f&t=e8swY3wU2j3VMPt5-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1"
           />
         </div>
       </div>

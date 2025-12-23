@@ -1,7 +1,7 @@
 import React from "react";
 import { MdOutlineArrowOutward  } from "react-icons/md";
 
-export const Services = ({link , service ,serviceName}) => {
+export const Services = ({link , service ,serviceName , serviceLink}) => {
   return (
     <div className="service-holder">
       <div className="img-wrapper">
@@ -20,7 +20,7 @@ export const Services = ({link , service ,serviceName}) => {
             {serviceName}
           </h1>
          <div className="arrow-div">
-           <a href="https://calendly.com/fixrragency" target="_blank" rel="noopener noreferrer">
+           <a href={serviceLink} target="_blank" rel="noopener noreferrer">
             <MdOutlineArrowOutward  size={70} />
            </a>
          </div>
