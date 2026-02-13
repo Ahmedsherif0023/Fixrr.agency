@@ -199,9 +199,9 @@ export default function Home() {
             <li className="cursor-pointer">
               <a href="#services">Services</a>
             </li>
-            <li className="cursor-pointer">
+            {/* <li className="cursor-pointer">
               <a href="#testmonials">Testimonials</a>
-            </li>
+            </li> */}
           </ul>
 
           {/* Desktop Button */}
